@@ -12,6 +12,7 @@ audit trail: PostgreSQL, a Node/TypeScript/Express API, and a React/TypeScript f
 - **Front-end:** React + TypeScript, built with Vite. Plain `fetch`, no state library.
 
 
+
 ## Prerequisites
 
 - Node.js 20+
