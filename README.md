@@ -1,5 +1,9 @@
 # Equipment Cleaning Log
 
+<img width="1148" height="589" alt="Screenshot 2026-08-19 at 4 47 55 PM" src="https://github.com/user-attachments/assets/d658467f-d2b1-412e-9bdf-6a900e8ab030" />
+
+<img width="1097" height="725" alt="Screenshot 2026-08-19 at 4 48 25 PM" src="https://github.com/user-attachments/assets/f2b9d376-40ba-41f3-9901-8df1fb7f1652" />
+
 A small full-stack app for logging equipment cleaning events with a full field-level
 audit trail: PostgreSQL, a Node/TypeScript/Express API, and a React/TypeScript front-end.
 
