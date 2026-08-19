@@ -1,0 +1,43 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: cleaning_user
+      POSTGRES_PASSWORD: cleaning_pass
+      POSTGRES_DB: cleaning_log
+    ports:
+      - "5432:5432"
+    volumes:
+      - cleaning_log_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cleaning_user -d cleaning_log"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://cleaning_user:cleaning_pass@postgres:5432/cleaning_log?schema=public
+      PORT: 4000
+    ports:
+      - "4000:4000"
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: http://localhost:4000/api
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "5173:5173"
+
+volumes:
+  cleaning_log_pg_data:
